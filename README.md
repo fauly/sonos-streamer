@@ -15,6 +15,6 @@ http://192.168.1.xxx:9000/stream
 
 Download and use it easily as an exe or app.
 
-![https://github.com/fauly/sonos-streamer/releases/tag/v0.0.1)](https://img.shields.io/github/v/release/fauly/sonos-streamer)
+![https://github.com/fauly/sonos-streamer/releases/tag/v0.0.1](https://img.shields.io/github/v/release/fauly/sonos-streamer)
 
 Please share any further ideas for development or improvement.
