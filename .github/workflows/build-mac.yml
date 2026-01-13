@@ -1,0 +1,38 @@
+name: Build macOS App
+
+on:
+  push:
+    branches: [ main ]  # Adjust to your default branch
+  workflow_dispatch:    # Allows manual triggering
+
+jobs:
+  build:
+    runs-on: macos-latest  # Uses GitHub's macOS runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'  # Adjust to your app's Python version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller  # Install PyInstaller
+
+    - name: Build with PyInstaller
+      run: |
+        # Adjust 'your_script.py' to your main file (e.g., sonos_streamer.py)
+        pyinstaller --onefile --windowed your_script.py
+        # For a .app bundle instead: pyinstaller --onedir --windowed your_script.py
+        # Add --icon=icon.icns if you have an icon file
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: macos-app  # Name for download
+        path: dist/      # PyInstaller outputs to 'dist/' folder
