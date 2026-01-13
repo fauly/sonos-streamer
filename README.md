@@ -10,8 +10,8 @@ The aim was ideally a one file build by compiling in ffmpeg etc. and using nativ
 ## The result
 An easy way to resolve streaming any device audio to speakers though the latency is large and perhaps i'll look into reducing this later.
 
-Download and use it easily.
+Download and use it easily as an exe or app.
+
 ![GitHub Release](https://img.shields.io/github/v/release/fauly/sonos-streamer)
 
-
-Developed by fauly - 13/01/2026
+Please share any further ideas for development or improvement.
