@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest  # Fast and available, but we'll make the binary compatible with Monterey
+    runs-on: macos-13  # Use macOS 13 runner for Monterey compatibility
 
     steps:
     - name: Checkout code
@@ -28,8 +28,10 @@ jobs:
       run: brew install ffmpeg
 
     - name: Build with PyInstaller
+      env:
+        MACOSX_DEPLOYMENT_TARGET: "12.0"
       run: |
-        pyinstaller --onefile --windowed --osx-version-min 12.0 --add-binary /usr/local/bin/ffmpeg:. main.py
+        pyinstaller --onefile --windowed --add-binary /usr/local/bin/ffmpeg:. main.py
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
