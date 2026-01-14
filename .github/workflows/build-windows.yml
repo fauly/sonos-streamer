@@ -26,7 +26,7 @@ jobs:
 
     - name: Download FFmpeg
       run: |
-        # Download FFmpeg Windows build
+        # Download FFmpeg Windows build (using widely-used gyan.dev builds)
         $ffmpegUrl = "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
         $ffmpegZip = "ffmpeg.zip"
         
@@ -38,7 +38,14 @@ jobs:
         
         # Find the extracted folder and move ffmpeg.exe to a known location
         $ffmpegFolder = Get-ChildItem -Directory -Filter "ffmpeg-*" | Select-Object -First 1
+        if (-not $ffmpegFolder) {
+            throw "FFmpeg folder not found after extraction"
+        }
+        
         $ffmpegExe = Join-Path $ffmpegFolder.FullName "bin\ffmpeg.exe"
+        if (-not (Test-Path $ffmpegExe)) {
+            throw "ffmpeg.exe not found at expected location: $ffmpegExe"
+        }
         
         Write-Host "FFmpeg location: $ffmpegExe"
         
