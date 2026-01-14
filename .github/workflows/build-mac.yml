@@ -26,11 +26,7 @@ jobs:
 
     - name: Build with PyInstaller
       run: |
-        # Adjust 'your_script.py' to your main file (e.g., sonos_streamer.py)
-        pyinstaller --onefile --windowed your_script.py
-        # For a .app bundle instead: pyinstaller --onedir --windowed your_script.py
-        # Add --icon=icon.icns if you have an icon file
-
+        pyinstaller --onefile --windowed main.py
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
