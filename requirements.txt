@@ -1,0 +1,6 @@
+sounddevice
+numpy
+requests
+pystray
+Pillow
+soundcard
