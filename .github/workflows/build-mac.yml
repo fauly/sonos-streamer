@@ -24,9 +24,20 @@ jobs:
         pip install -r requirements.txt
         pip install pyinstaller  # Install PyInstaller
 
+    - name: Install FFmpeg
+      run: |
+        brew install ffmpeg
+
     - name: Build with PyInstaller
       run: |
-        pyinstaller --onefile --windowed main.py
+        # Find FFmpeg binary location
+        FFMPEG_PATH=$(which ffmpeg)
+        echo "FFmpeg location: $FFMPEG_PATH"
+        
+        # Bundle FFmpeg with PyInstaller
+        pyinstaller --onefile --windowed \
+          --add-binary "$FFMPEG_PATH:." \
+          main.py
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
